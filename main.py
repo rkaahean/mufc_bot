@@ -111,3 +111,6 @@ def publish_prematch_report():
 
 
 schedule.every(30).minutes.do(publish_prematch_report)
+
+while True:
+    schedule.run_pending()
