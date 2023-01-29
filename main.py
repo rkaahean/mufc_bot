@@ -3,6 +3,7 @@ import datetime
 import tweepy
 import os
 import schedule
+import time
 
 FBREF_MUFC_URL = "https://fbref.com/en/squads/19538871/all_comps/Manchester-United-Stats-All-Competitions"
 FBREF_BASE_URL = "https://fbref.com"
@@ -96,7 +97,7 @@ def publish_prematch_report():
         formatted_form += FORM_EMOJIS[i] + ' '
 
     form_tweet = "@ManUtd's recent form\n {}".format(formatted_form)
-    upcoming_tweet = "🔔 NEXT FIXTURE\n{team_name} ({venue}) in the {competition}".format(
+    upcoming_tweet = "🔔 FIXTURE\n{team_name} ({venue}) in the {competition}".format(
         venue=fixture['Venue'][0], team_name=fixture['Opponent'], competition=fixture['Comp'])
     final_tweet = upcoming_tweet + '\n\n' + form_tweet
 
@@ -110,7 +111,8 @@ def publish_prematch_report():
                       auto_populate_reply_metadata=True)
 
 
-schedule.every(30).minutes.do(publish_prematch_report)
+schedule.every(3).hours.do(publish_prematch_report)
 
 while True:
     schedule.run_pending()
+    time.sleep(1)
