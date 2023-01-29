@@ -2,7 +2,7 @@ import pandas as pd
 import datetime
 import tweepy
 import os
-
+import schedule
 
 FBREF_MUFC_URL = "https://fbref.com/en/squads/19538871/all_comps/Manchester-United-Stats-All-Competitions"
 FBREF_BASE_URL = "https://fbref.com"
@@ -110,4 +110,4 @@ def publish_prematch_report():
                       auto_populate_reply_metadata=True)
 
 
-publish_prematch_report()
+schedule.every(30).minutes.do(publish_prematch_report)
