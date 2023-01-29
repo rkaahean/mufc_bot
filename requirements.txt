@@ -1,2 +1,3 @@
 tweepy==4.12.1
 understat==0.1.9
+python-crontab==2.7.1
