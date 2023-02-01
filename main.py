@@ -108,8 +108,8 @@ def publish_prematch_report():
     )
     time_to_match = next_date.diff(pendulum.now(tz="Europe/London")).in_minutes()
 
-    # if (time_to_match >= 1500 or time_to_match < 1400) and running_env == "PROD":
-    #     return
+    if (time_to_match >= 1500 or time_to_match < 1400) and running_env == "PROD":
+        return
 
     form = data["form"].values
     formatted_form = ""
